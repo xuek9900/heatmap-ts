@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="view" style="width: 100vw; height: 100vh; margin: 0;"></div>
+  <script src="../dist/index.js"></script>
+  <script>
+    const hm = new HeatMap({
+      container: document.getElementById('view'),
+      maxOpacity: .6,
+      radius: 50,
+      blur: 0.90,
+    })
+
+    console.log(hm)
+
+    hm.addData({
+      x: 100,
+      y: 100,
+      value: 100
+    })
+
+  </script>
+</body>
+
+</html>
