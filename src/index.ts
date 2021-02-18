@@ -1,6 +1,6 @@
 import Store, { StoreData } from './store'
 import Renderer, { RendererConfig } from './renderer'
-import DefaultConfig from './defaultConfig'
+import DefaultConfigs, { DefaultConfig } from './defaultConfig'
 import { Point, DataPoint } from './interface'
 
 interface Config extends RendererConfig {
@@ -14,7 +14,7 @@ class HeatMap {
   store: Store;
 
   constructor(config: Config) {
-    this.config = { ...DefaultConfig, ...config }
+    this.config = config
     this.renderer = new Renderer(this.config)
     this.store = new Store(this.config)
 
@@ -29,7 +29,7 @@ class HeatMap {
         this.config.onExtremaChange({
           min: data.min,
           max: data.max,
-          gradient: this.config.gradient || this.config.defaultGradient
+          gradient: this.config.gradient || DefaultConfigs.defaultGradient
         });
     })
   }

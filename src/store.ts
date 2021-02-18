@@ -1,8 +1,8 @@
 import { AxisFields, ValueFields, DataPoint } from './interface'
-import { defaultConfig } from './defaultConfig'
+import DefaultConfigs, { DefaultConfig } from './defaultConfig'
 import Coordinator from './coordinator'
 
-interface StoreConfig extends defaultConfig {
+interface StoreConfig {
   xField?: AxisFields;
   yField?: AxisFields;
   valueField?: ValueFields;
@@ -40,10 +40,10 @@ class Store {
     this.radi = []
     this.min = 10
     this.max = 1
-    this.xField = config.xField || config.defaultXField
-    this.yField = config.yField || config.defaultYField
-    this.valueField = config.valueField || config.defaultValueField
-    this.radius = config.radius || config.defaultRadius
+    this.xField = config.xField || DefaultConfigs.defaultXField
+    this.yField = config.yField || DefaultConfigs.defaultYField
+    this.valueField = config.valueField || DefaultConfigs.defaultValueField
+    this.radius = config.radius || DefaultConfigs.defaultRadius
   }
 
   // when forceRender = false -> called from setData, omits renderall event
@@ -60,7 +60,7 @@ class Store {
     if (!radi[x]) {
       data[x] = [];
       radi[x] = []
-    } 
+    }
     if (!radi[x][y]) {
       data[x][y] = value;
       radi[x][y] = radius;

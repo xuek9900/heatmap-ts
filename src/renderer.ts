@@ -1,22 +1,21 @@
 import { StoreConfig, StoreData } from './store'
-import { defaultConfig } from './defaultConfig'
+import DefaultConfigs, { DefaultConfig } from './defaultConfig'
 import { Point, DataPoint } from './interface'
 
-interface RendererConfig extends StoreConfig, defaultConfig {
-  container: HTMLElement;
+interface RendererConfig extends StoreConfig {
+  container?: HTMLElement;
   canvas?: HTMLCanvasElement;
   shadowCanvas?: HTMLCanvasElement;
   width?: number;
   height?: number;
-  gradient?: defaultConfig['defaultGradient'];
-  blur?: defaultConfig['defaultBlur'];
+  gradient?: DefaultConfig['defaultGradient'];
+  blur?: DefaultConfig['defaultBlur'];
   backgroundColor?: string;
   opacity?: number;
   maxOpacity?: number;
   minOpacity?: number;
   useGradientOpacity?: boolean;
 }
-
 class Renderer {
 
   canvas: HTMLCanvasElement;
@@ -40,24 +39,17 @@ class Renderer {
 
   constructor(config: RendererConfig) {
 
-    const styles = getComputedStyle(config.container)
-    const canvas = config.canvas || document.createElement('canvas')
-    const shadowCanvas = config.shadowCanvas || document.createElement('canvas')
+    this.canvas = config.canvas || document.createElement('canvas')
+    this.ctx = this.canvas.getContext('2d')
 
-    this.canvas = canvas
-    this.ctx = canvas.getContext('2d')
+    this.shadowCanvas = config.shadowCanvas || document.createElement('canvas')
+    this.shadowCtx = this.shadowCanvas.getContext('2d')
 
-    this.shadowCanvas = shadowCanvas
-    this.shadowCtx = shadowCanvas.getContext('2d')
+    this.width = config.width || 512
+    this.height = config.height || 512
 
-    const width = config.width || +(styles.width.replace(/px/, ''))
-    const height = config.height || +(styles.height.replace(/px/, ''))
-
-    this.width = canvas.width = shadowCanvas.width = width
-    this.height = canvas.height = shadowCanvas.height = height
-
-    this.max = 0
-    this.min = 0
+    this.max = 100
+    this.min = 1
     this.blur = 1
     this.opacity = 1
     this.maxOpacity = 1
@@ -65,10 +57,14 @@ class Renderer {
 
     this.useGradientOpacity = false
 
-    canvas.style.cssText = shadowCanvas.style.cssText = 'position:absolute;left:0;top:0;'
+    this.canvas.style.cssText = this.shadowCanvas.style.cssText = 'position:absolute;left:0;top:0;'
 
-    config.container.style.position = 'relative'
-    config.container.appendChild(canvas)
+    if (config.container) {
+
+      config.container.style.position = 'relative'
+      config.container.appendChild(this.canvas)
+
+    }
 
     this.renderBoundaries = [10000, 10000, 0, 0]
     this.palette = this._getColorPalette(config)
@@ -115,7 +111,7 @@ class Renderer {
   }
 
   _getColorPalette(config: RendererConfig): Uint8ClampedArray {
-    const gradientConfig = config.gradient || config.defaultGradient
+    const gradientConfig = config.gradient || DefaultConfigs.defaultGradient
     const paletteCanvas = document.createElement('canvas')
     const paletteCtx = paletteCanvas.getContext('2d')
 
@@ -204,7 +200,7 @@ class Renderer {
   }
 
   _setStyles(config: RendererConfig): void {
-    this.blur = config.blur === 0 ? 0 : (config.blur || config.defaultBlur)
+    this.blur = config.blur === 0 ? 0 : (config.blur || DefaultConfigs.defaultBlur)
 
     if (config.backgroundColor) {
       this.canvas.style.backgroundColor = config.backgroundColor
@@ -214,8 +210,8 @@ class Renderer {
     this.height = this.canvas.height = this.shadowCanvas.height = config.height || this.height
 
     this.opacity = (config.opacity || 0) * 255
-    this.maxOpacity = (config.maxOpacity || config.defaultMaxOpacity) * 255
-    this.minOpacity = (config.minOpacity || config.defaultMinOpacity) * 255
+    this.maxOpacity = (config.maxOpacity || DefaultConfigs.defaultMaxOpacity) * 255
+    this.minOpacity = (config.minOpacity || DefaultConfigs.defaultMinOpacity) * 255
     this.useGradientOpacity = !!config.useGradientOpacity
   }
 

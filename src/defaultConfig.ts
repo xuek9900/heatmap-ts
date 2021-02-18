@@ -1,7 +1,7 @@
 
 import { AxisFields, ValueFields } from './interface'
 
-export interface defaultConfig {
+export interface DefaultConfig {
   defaultRadius: number;
   defaultGradient: Record<number, string>;
   defaultMaxOpacity: number;
@@ -13,8 +13,7 @@ export interface defaultConfig {
   plugins: Record<string, any>;
 }
 
-// Heatmap Config stores default values and will be merged with instance config
-export default {
+const defaultConfigs: DefaultConfig = {
   defaultRadius: 40,
   defaultGradient: { 0.25: "rgb(0,0,255)", 0.55: "rgb(0,255,0)", 0.85: "yellow", 1.0: "rgb(255,0,0)" },
   defaultMaxOpacity: 1,
@@ -25,3 +24,6 @@ export default {
   defaultValueField: 'value',
   plugins: {}
 }
+
+// Heatmap Config stores default values and will be merged with instance config
+export default defaultConfigs

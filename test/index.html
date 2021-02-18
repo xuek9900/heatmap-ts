@@ -6,10 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="view" style="width: 100vw; height: 100vh; margin: 0;"></div>
+  <div id="view" style="width: 100vw; height: 100vh;"></div>
   <script src="../dist/index.js"></script>
   <script>
     const hm = new HeatMap({
@@ -42,7 +47,7 @@
           y: 250,
           value: 50,
           radius: 30
-        },
+        }
       ]
     })
 
