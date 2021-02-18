@@ -57,8 +57,6 @@ class Store {
     const value = dataPoint[this.valueField] || 1
     const radius = dataPoint.radius || this.radius
 
-    console.log('x', x)
-
     if (!radi[x]) {
       data[x] = [];
       radi[x] = []
