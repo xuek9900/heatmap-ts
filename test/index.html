@@ -21,10 +21,29 @@
 
     console.log(hm)
 
-    hm.addData({
-      x: 100,
-      y: 100,
-      value: 100
+    // hm.addData({
+    //   x: 100,
+    //   y: 100,
+    //   value: 100
+    // })
+
+    hm.setData({
+      max: 100,
+      min: 1,
+      data: [
+        {
+          x: 100,
+          y: 100,
+          value: 100,
+          radius: 20
+        },
+        {
+          x: 200,
+          y: 250,
+          value: 50,
+          radius: 30
+        },
+      ]
     })
 
   </script>
