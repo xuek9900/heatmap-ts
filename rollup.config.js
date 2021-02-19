@@ -11,22 +11,17 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      name: 'HeatMap',
       file: 'dist/index.cjs.js',
       format: 'cjs',
       exports: 'default'
     },
     {
-      name: 'HeatMap',
       file: 'dist/index.esm.js',
       format: 'es',
-      exports: 'default'
     },
     {
-      name: 'HeatMap',
       file: 'dist/index.js',
       format: 'iife',
-      exports: 'default'
     }
   ],
   plugins: [

@@ -74,5 +74,6 @@ class HeatMap {
 }
 
 export { Config }
+export * from './interface'
 
 export default HeatMap

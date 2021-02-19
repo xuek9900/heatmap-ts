@@ -1,14 +1,14 @@
 {
   "name": "heatmap-ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Forked from [pa7/heatmap.js](https://github.com/pa7/heatmap.js) for TypeScript.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "unpkg": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "dev": "rollup --config ./rollup.config.js --watch",
-    "build": "rollup --config ./rollup.config.js"
+    "dev": "rollup -c -w --name HeatMap",
+    "build": "rollup -c --name HeatMap"
   },
   "keywords": [
     "heatmap",
