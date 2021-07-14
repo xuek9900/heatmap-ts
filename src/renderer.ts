@@ -220,8 +220,8 @@ class Renderer {
   }
 
   _drawAlpha(resData: StoreData): void {
-    const min = this.min = resData.min
-    const max = this.max = resData.max
+    const min = this.min = resData.min || 0
+    const max = this.max = resData.max || 100
     const data = resData.data || []
 
     let dataLen = data.length

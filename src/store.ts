@@ -10,8 +10,8 @@ interface StoreConfig {
 }
 
 interface StoreData {
-  max: number;
-  min: number;
+  max?: number;
+  min?: number;
   data: DataPoint[];
 }
 
@@ -156,8 +156,8 @@ class Store {
       this._organiseData(dataPoints[i], false);
     }
 
-    this.max = resData.max;
     this.min = resData.min || 0;
+    this.max = resData.max || 100;
 
     this._onExtremaChange();
     this.coordinator.emit('renderall', this._getInternalData());
