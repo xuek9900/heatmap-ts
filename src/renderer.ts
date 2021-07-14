@@ -16,6 +16,7 @@ interface RendererConfig extends StoreConfig {
   minOpacity?: number;
   useGradientOpacity?: boolean;
 }
+
 class Renderer {
 
   canvas: HTMLCanvasElement;
@@ -25,8 +26,11 @@ class Renderer {
 
   width: number;
   height: number;
+
   max: number;
   min: number;
+  radius: number;
+
   blur: number;
   opacity: number;
   maxOpacity: number;
@@ -50,6 +54,8 @@ class Renderer {
 
     this.max = 100
     this.min = 1
+    this.radius = config.radius || 50
+
     this.blur = 1
     this.opacity = 1
     this.maxOpacity = 1
@@ -234,11 +240,12 @@ class Renderer {
 
       const x = point.x
       const y = point.y
-      const radius = point.radius
+      const radius = point.radius || this.radius
+      
       // if value is bigger than max
       // use max as value
       const value = Math.min(point.value, max)
-      const rectX = x - radius
+      const rectX = x - radius 
       const rectY = y - radius
 
       if (!this.shadowCtx) return

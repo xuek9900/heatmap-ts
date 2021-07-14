@@ -8,5 +8,5 @@ export interface Point {
 
 export interface DataPoint extends Point {
   value: number;
-  radius: number;
+  radius?: number;
 }

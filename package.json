@@ -1,6 +1,6 @@
 {
   "name": "heatmap-ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Forked from [pa7/heatmap.js](https://github.com/pa7/heatmap.js) for TypeScript.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
